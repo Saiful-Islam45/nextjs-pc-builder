@@ -6,7 +6,7 @@ import Link from "next/link";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900">
+    <nav className="sticky z-10 top-0 shadow-md bg-white border-gray-200 dark:bg-gray-900">
       <div className=" max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link href="/" className="flex text-purple-900 font-extrabold items-center">
           <Logo/>
@@ -67,25 +67,25 @@ const Navbar = () => {
             </li>
 
             <li>
-              <div class="dropdown">
+              <div className="dropdown">
                 <div className="flex items-center">
-                <button class="dropbtn block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-white md:dark:hover:text-purple-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                <button className="dropbtn block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-white md:dark:hover:text-purple-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                   Categories
                 </button>
                 <svg
-                    class="-mr-1 h-5 w-5 text-gray-400"
+                    className="-mr-1 h-5 w-5 text-gray-400"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                     aria-hidden="true"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     />
                   </svg>
                 </div>
-                <div class="dropdown-content">
+                <div className="dropdown-content">
                   <Link href="#">CPU / Processor</Link>
                   <Link href="#">Motherboard</Link>
                   <Link href="#">RAM</Link>
@@ -97,7 +97,7 @@ const Navbar = () => {
                 </div>
               </div>
             </li>
-            <Link href={"/pcbuilder"}>
+            <Link href={"/pc-builder"}>
               <span className="px-4 py-1 border border-purple-200 rounded-full text-purple-600 font-bold hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">PC Builder</span>
             </Link>
           </ul>
