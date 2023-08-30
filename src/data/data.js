@@ -560,11 +560,23 @@ export const data = [
   }
 ]
 
-export const categories= data.reduce((acc, curr) => {
-    if(Object.keys(acc[curr?.category]).length) {
-        acc[curr.category]?.push(curr)
+export const categories = data.reduce((acc, curr) => {
+    const existingCategory = acc.find(category => category.name === curr.category);
+
+    if (existingCategory) {
+      existingCategory.products.push(curr);
     } else {
-        acc[curr.category] = [curr]
+      acc.push({
+        id: acc.length + 1,
+        name: curr.category,
+        products: [curr],
+      });
     }
-    return acc
-}, {})
+  
+    return acc;
+  }, []);
+  
+  
+  
+  
+  
