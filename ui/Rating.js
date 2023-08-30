@@ -1,16 +1,15 @@
 import { BsStarFill } from "react-icons/bs";
 
-const Rating = ({ rating }) => {
-  rating = Math.floor(rating);
+const Rating = ({ rating, isNumberShow=true }) => {
   const filledArray = [1, 2, 3, 4, 5];
   return (
     <div className="mt-2.5 mb-5 flex items-center">
-      <span className="mr-2 rounded bg-yellow-200 p-2 text-xs font-semibold">
+      {isNumberShow && <span className="mr-2 rounded bg-yellow-300 p-2 text-xs font-semibold">
         {rating}
-      </span>
+      </span>}
       {filledArray.map((val, i) => (
         <span key={"rating" + i}>
-          <BsStarFill className=" text-red-500" />
+          <BsStarFill color={`${Math.round(rating) <= i ? 'gray' : 'rgb(253 224 71 / 600)'}`}className={`${Math.floor(rating) <= i ? 'text-blue-500' : 'bg-transparent'}`} />
         </span>
       ))}
     </div>

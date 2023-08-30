@@ -9,7 +9,7 @@ export const data = [
       "status": "In Stock",
       "rating": 4.2,
       "description": "The Intel Core i9-9900K is a high-performance desktop CPU designed for gaming and heavy multitasking. With its 8 cores and 16 threads, it delivers exceptional performance in both single-threaded and multi-threaded tasks.",
-      "key_features": {
+      "keyFeatures": {
           "Brand": "Intel",
           "Model": "Core i9-9900K",
           "Specification": "8 cores, 16 threads",
@@ -43,7 +43,7 @@ export const data = [
       "status": "In Stock",
       "rating": 4.2,
       "description": "The ASUS ROG Strix Z390-E is a feature-packed motherboard designed for gaming enthusiasts. It supports the latest Intel processors and comes with a variety of connectivity options.",
-      "key_features": {
+      "keyFeatures": {
           "Brand": "ASUS",
           "Model": "ROG Strix Z390-E",
           "Form Factor": "ATX",
@@ -79,7 +79,7 @@ export const data = [
       "status": "In Stock",
       "rating": 4.9,
       "description": "Corsair Vengeance LPX is a high-performance DDR4 RAM module that delivers impressive speeds and low latencies. Its sleek design and heatspreaders ensure stable performance even during intense tasks.",
-      "key_features": {
+      "keyFeatures": {
           "Brand": "Corsair",
           "Model": "Vengeance LPX",
           "Capacity": "16GB (2 x 8GB)",
@@ -114,7 +114,7 @@ export const data = [
       "status": "In Stock",
       "rating": 4.7,
       "description": "The EVGA Supernova 750 G3 is a high-quality and efficient power supply unit designed for gaming and high-performance systems. It comes with fully modular cables for easy cable management.",
-      "key_features": {
+      "keyFeatures": {
           "Brand": "EVGA",
           "Model": "Supernova 750 G3",
           "Wattage": "750W",
@@ -148,7 +148,7 @@ export const data = [
       "status": "In Stock",
       "rating": 4.8,
       "description": "The Samsung 970 EVO is a high-performance NVMe SSD that offers lightning-fast read and write speeds, making it ideal for gaming and content creation. It comes with Samsung's reliable V-NAND technology.",
-      "key_features": {
+      "keyFeatures": {
           "Brand": "Samsung",
           "Model": "970 EVO",
           "Capacity": "1TB",
@@ -183,7 +183,7 @@ export const data = [
       "status": "Out of Stock",
       "rating": 4,
       "description": "The Dell S2719DGF is a 27-inch QHD gaming monitor with a high refresh rate and fast response time. Its TN panel ensures minimal motion blur, making it suitable for competitive gaming.",
-      "key_features": {
+      "keyFeatures": {
           "Brand": "Dell",
           "Model": "S2719DGF",
           "Screen Size": "27 inches",
@@ -219,7 +219,7 @@ export const data = [
       "status": "In Stock",
       "rating": 4,
       "description": "The Logitech G Pro Mechanical Keyboard is designed for esports professionals and serious gamers. It features durable mechanical switches and customizable RGB lighting.",
-      "key_features": {
+      "keyFeatures": {
           "Brand": "Logitech",
           "Model": "G Pro",
           "Switch Type": "Mechanical (e.g., Romer-G, Cherry MX)",
@@ -254,7 +254,7 @@ export const data = [
       "status": "In Stock",
       "rating": 5,
       "description": "The AMD Ryzen 7 5800X is a powerful desktop CPU that delivers impressive multi-core performance. With 8 cores and 16 threads, it excels in both gaming and productivity tasks.",
-      "key_features": {
+      "keyFeatures": {
           "Brand": "AMD",
           "Model": "Ryzen 7 5800X",
           "Specification": "8 cores, 16 threads",
@@ -288,7 +288,7 @@ export const data = [
       "status": "In Stock",
       "rating": 5,
       "description": "The GIGABYTE B550 AORUS Pro is a feature-rich motherboard that supports the latest AMD Ryzen processors. It comes with advanced thermal solutions and high-quality components.",
-      "key_features": {
+      "keyFeatures": {
           "Brand": "GIGABYTE",
           "Model": "B550 AORUS Pro",
           "Form Factor": "ATX",
@@ -324,7 +324,7 @@ export const data = [
       "status": "In Stock",
       "rating": 4,
       "description": "G.Skill Trident Z RGB is a high-performance DDR4 RAM module known for its stylish design and customizable RGB lighting. It offers fast speeds and low latencies for a smooth computing experience.",
-      "key_features": {
+      "keyFeatures": {
           "Brand": "G.Skill",
           "Model": "Trident Z RGB",
           "Capacity": "32GB (2 x 16GB)",
@@ -359,7 +359,7 @@ export const data = [
       "status": "In Stock",
       "rating": 3,
       "description": "The Seasonic Focus GX-850 is a high-quality power supply unit known for its reliable performance and efficiency. It comes with fully modular cables for easy cable management.",
-      "key_features": {
+      "keyFeatures": {
           "Brand": "Seasonic",
           "Model": "Focus GX-850",
           "Wattage": "850W",
@@ -393,7 +393,7 @@ export const data = [
       "status": "In Stock",
       "rating": 5,
       "description": "The Western Digital Blue HDD is a reliable storage solution for bulk data storage needs. With 2TB of capacity, it offers plenty of space for games, videos, and other files.",
-      "key_features": {
+      "keyFeatures": {
           "Brand": "Western Digital",
           "Model": "Blue",
           "Capacity": "2TB",
@@ -427,7 +427,7 @@ export const data = [
       "status": "In Stock",
       "rating": 5,
       "description": "The LG 34GN850-B is a premium ultrawide gaming monitor with a large 34-inch display and high refresh rate. It offers an immersive gaming experience and accurate colors.",
-      "key_features": {
+      "keyFeatures": {
           "Brand": "LG",
           "Model": "34GN850-B",
           "Screen Size": "34 inches",
@@ -463,7 +463,7 @@ export const data = [
       "status": "Out of Stock",
       "rating": 4,
       "description": "The Razer DeathAdder Elite is a popular gaming mouse known for its ergonomic design and precise optical sensor. It offers customizable RGB lighting and programmable buttons.",
-      "key_features": {
+      "keyFeatures": {
           "Brand": "Razer",
           "Model": "DeathAdder Elite",
           "Sensor": "Optical",
@@ -498,7 +498,7 @@ export const data = [
       "status": "In Stock",
       "rating": 4,
       "description": "The Intel Core i5-11600K is a powerful mid-range desktop CPU designed for gaming and productivity tasks. With 6 cores and 12 threads, it offers excellent performance for its price.",
-      "key_features": {
+      "keyFeatures": {
           "Brand": "Intel",
           "Model": "Core i5-11600K",
           "Specification": "6 cores, 12 threads",
@@ -532,7 +532,7 @@ export const data = [
       "status": "In Stock",
       "rating": 4.5,
       "description": "The MSI MAG B560M Mortar is a compact yet feature-rich micro-ATX motherboard. It supports Intel 11th Gen processors and offers robust power delivery for stable performance.",
-      "key_features": {
+      "keyFeatures": {
           "Brand": "MSI",
           "Model": "MAG B560M Mortar",
           "Form Factor": "Micro-ATX",
@@ -559,3 +559,12 @@ export const data = [
       "link": "/motherboard"
   }
 ]
+
+export const categories= data.reduce((acc, curr) => {
+    if(Object.keys(acc[curr?.category]).length) {
+        acc[curr.category]?.push(curr)
+    } else {
+        acc[curr.category] = [curr]
+    }
+    return acc
+}, {})
