@@ -1,153 +1,115 @@
-import { Badge, Button, Divider, List, Modal, Skeleton } from "antd";
-import { useRouter } from "next/router";
-import { useContext } from "react";
-import { PcContext } from "@/context/PcContext";
-import IsMobile from "@/hooks/isMobile";
-import { anton } from "../_app";
+/* eslint-disable @next/next/no-img-element */
+import React, { useState } from 'react';
+import Modal from 'react-modal';
+import { RiArrowRightSLine } from 'react-icons/ri';
+import { RiCloseLine } from 'react-icons/ri';
+import { FaPlus } from 'react-icons/fa'; 
 
-const PcBuild = () => {
-	const router = useRouter();
-	const { setIsPcBuilding, pcData, deleteFromPcBuilder, setPcData } = useContext(PcContext);
-	const { isMobileScreen } = IsMobile();
-	const [modal, contextHolder] = Modal.useModal();
-	const countDown = () => {
-		let secondsToGo = 5;
-
-		const instance = modal.success({
-			title: 'Successfully Built',
-			content: `Thank You for order the pc, we will reach you soon!`,
-		});
-
-		const timer = setInterval(() => {
-			secondsToGo -= 1;
-			instance.update({
-				content: `Thank You for order the pc, we will reach you soon!`,
-			});
-		}, 1000);
-
-		setTimeout(() => {
-			clearInterval(timer);
-			instance.destroy();
-			setPcData(null);
-			setIsPcBuilding(false)
-		}, secondsToGo * 1000);
-	};
-
-
-	const findComponent = (title) => {
-		return pcData?.find((pd) => pd.category === title)
-	}
-
-	const countCost = () => {
-		return pcData?.reduce((acc, pd) => acc + pd.price, 0)
-	}
-
-
-
-
-
-	return (
-		<div style={{ width: isMobileScreen ? "100%" : "80%", margin: '0 auto' }}>
-
-			<h1 style={{ textAlign: 'center', padding: isMobileScreen ? '5px 0' : '20px 0 0 0', textDecoration: 'underline', fontSize: isMobileScreen ? 30 : 40 }} className={anton.className}>🎉 Make Your Dream PC 🎉</h1>
-			{contextHolder}
-			<List
-				size="large"
-				header={<div>Add Required Components</div>}
-				footer={<div style={{ textAlign: 'end', fontWeight: 'bold' }}>Total Cost: {countCost() ?? 0} $
-					<Button color="green" type="primary" size="large" disabled={(pcData === null || pcData?.length <= 6)} style={{ marginLeft: '20px', }} onClick={() => {
-						countDown();
-
-					}}>Complete Build</Button>
-				</div>}
-				bordered
-				dataSource={data}
-				renderItem={(item) => <List.Item
-					actions={[
-
-						!findComponent(item.title) ? <Button key="list-loadmore-more" onClick={() => {
-							setIsPcBuilding(true)
-							router.push(item.link)
-						}}>Choose</Button> : null, findComponent(item.title) ? <Button key="list-loadmore-more" onClick={() => {
-							deleteFromPcBuilder(item.title)
-						}} danger>Delete</Button> : null]}
-				>
-					<Skeleton avatar title={false} loading={false} active>
-						<List.Item.Meta
-							title={<div>
-								<Badge count={findComponent(item.title) ? "Added" : 'Required'} color={findComponent(item.title) ? "green" : 'red'} offset={[40, 10]}>
-									{item.title}
-								</Badge>
-							</div>}
-							description={<>
-								{findComponent(item.title)?.name}
-
-								{isMobileScreen && findComponent(item.title) && <div>
-									<Divider></Divider>
-									Price: {findComponent(item.title)?.price} $
-									<br />
-									Ratings: {findComponent(item.title)?.average_rating} ⭐
-
-								</div>}
-
-							</>}
-						/>
-						{!isMobileScreen && findComponent(item.title) && <div>
-							<Divider></Divider>
-							Price: {findComponent(item.title)?.price} $
-							<br />
-							Ratings: {findComponent(item.title)?.average_rating} ⭐
-
-						</div>}
-					</Skeleton>
-				</List.Item>}
-			/>
-		</div>
-	);
+// Sample data for categories and products
+const categories = [
+  { id: 1, name: 'Category 1', products: ['Product A', 'Product B', 'Product C'] },
+  { id: 2, name: 'Category 2', products: ['Product X', 'Product Y', 'Product Z'] },
+  // Add more categories as needed
+];
+const AnimatedCard = ({ children, className }) => {
+  return (
+    <div className={`transition duration-300 ease-in-out transform hover:scale-105 ${className}`}>
+      {children}
+    </div>
+  );
 };
 
-export default PcBuild;
-const data = [
-	{
-		id: 1,
-		title: 'CPU',
-		required: true,
-		link: '/choose/cpu',
-	},
-	{
-		id: 2,
-		title: 'Motherboard',
-		required: true,
-		link: '/choose/motherboard',
-	},
-	{
-		id: 3,
-		title: 'RAM',
-		required: true,
-		link: '/choose/ram',
-	},
-	{
-		id: 4,
-		title: 'Storage Device',
-		required: true,
-		link: '/choose/storage device',
-	},
-	{
-		id: 5,
-		title: 'GPU',
-		required: true,
-		link: '/choose/gpu',
-	},
-	{
-		id: 6,
-		title: 'Monitor',
-		required: true,
-		link: '/choose/monitor',
-	},
-	{
-		id: 7,
-		title: 'Power Supply Unit',
-		required: true,
-		link: '/choose/power supply unit',
-	},
-]
+const ProductModal = ({ isOpen, onClose, products, onSelectProduct }) => {
+  return (
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onClose}
+      className="modal"
+      overlayClassName="overlay"
+    >
+      <div className="modal-content">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl">Select a Product</h2>
+          <button onClick={onClose} className="btn-close">
+            <RiCloseLine />
+          </button>
+        </div>
+        <ul className="grid grid-cols-2 gap-4">
+          {products.map((product, index) => (
+            <AnimatedCard key={index} className="product-card p-4 rounded-md shadow-md hover:shadow-lg hover:scale-105">
+              <div className="flex items-center justify-between">
+                <img
+                  src={product.imageSrc} 
+                  alt={product.name}
+                  className="w-16 h-16 rounded-full"
+                />
+                <button
+                  onClick={() => onSelectProduct(product)}
+                  className="btn-add"
+                >
+                  <FaPlus />
+                </button>
+              </div>
+              <h3 className="text-lg font-semibold mt-2">{product.name}</h3>
+              <p className="text-gray-500 mt-1">${product.price}</p>
+            </AnimatedCard>
+          ))}
+        </ul>
+      </div>
+    </Modal>
+  );
+};
+
+
+
+const CategoryList = () => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const handleChooseClick = (category) => {
+    setSelectedCategory(category);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSelectProduct = (product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(false);
+  };
+
+  return (
+    <div className="flex justify-center items-center min-h-screen">
+      <div className="w-1/2">
+        {categories.map((category) => (
+          <div key={category.id} className="flex justify-between items-center mb-4">
+            <div>{category.name}</div>
+            <button
+              className="flex items-center"
+              onClick={() => handleChooseClick(category)}
+            >
+              Choose <RiArrowRightSLine className="ml-2" />
+            </button>
+          </div>
+        ))}
+      </div>
+      {selectedCategory && (
+        <div className="ml-8">
+          <h2>Selected Category: {selectedCategory.name}</h2>
+          {selectedProduct && <p>Selected Product: {selectedProduct}</p>}
+        </div>
+      )}
+      <ProductModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        products={selectedCategory ? selectedCategory.products : []}
+        onSelectProduct={handleSelectProduct}
+      />
+    </div>
+  );
+};
+
+export default CategoryList;

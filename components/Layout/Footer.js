@@ -6,6 +6,7 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 
+
 const Footer = () => {
   return (
     <footer className="relative bg-blueGray-200 pt-8 pb-6">
@@ -20,13 +21,13 @@ const Footer = () => {
             </h5>
             <div className="mt-6 lg:mb-0 mb-6">
               <button
-                className="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                className="bg-white text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                 type="button"
               >
                 <FontAwesomeIcon icon={faTwitter} />
               </button>
               <button
-                className="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                className="bg-white text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                 type="button"
               >
                 <FontAwesomeIcon icon={faFacebook} />
@@ -38,7 +39,7 @@ const Footer = () => {
                 <FontAwesomeIcon icon={faInstagram} />
               </button>
               <button
-                className="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                className="bg-white text-yellow-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                 type="button"
               >
                 <FontAwesomeIcon icon={faAmazonPay} />
@@ -139,7 +140,7 @@ const Footer = () => {
                 target="_blank"
               >
                 {" "}
-                Mini E-commerce by
+                PC Builder by
               </a>
               <a href="#" className="text-blueGray-500 hover:text-blueGray-800">
                 {" "}
