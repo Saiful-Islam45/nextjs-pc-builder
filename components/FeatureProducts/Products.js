@@ -2,7 +2,7 @@
 import { data } from "@/data/data";
 import React from "react";
 import Link from "next/link";
-import Rating from "../../ui/Rating";
+import Rating from "../../src/ui/Rating";
 
 const Products = () => {
   const products = data;
@@ -14,7 +14,6 @@ const Products = () => {
             <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
               Feature Products
             </h2>
-
             <p className="max-w-md mx-auto mt-4 text-gray-500">
               Get Your Desired Product from Featured products!
             </p>

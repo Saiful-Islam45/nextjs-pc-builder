@@ -2,7 +2,7 @@
 import React from "react";
 import { data } from "@/data/data";
 import { useRouter } from "next/router";
-import Rating from "../../../ui/Rating";
+import Rating from "../../ui/Rating";
 import RootLayout from '../../../components/Layout/index';
 
 const ProductDetails = () => {

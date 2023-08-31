@@ -4,8 +4,7 @@ import Modal from 'react-modal';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import RootLayout from '../../components/Layout';
 import { categories as categoryData } from '@/data/data';
-import { MdClose } from 'react-icons/md';
-import { categoryIcons } from '../../utils/Category';
+import { categoryIcons } from '../utils/Category';
 import { FaTimes } from 'react-icons/fa';
 
 const ProductModal = ({ isOpen, onClose, products, onSelectProduct }) => {
@@ -39,7 +38,7 @@ const ProductModal = ({ isOpen, onClose, products, onSelectProduct }) => {
                   <p>$ {product.price}</p>
                   <button
                     onClick={() => onSelectProduct(product)}
-                    className="bg-purple-700 ring-1 hover:ring-offset-1 px-3 py-1 rounded-full"
+                    className="bg-purple-700 ring-1 hover:ring-offset-1 px-3 py-1 rounded-full text-white"
                   >
                     Add
                   </button>
@@ -111,32 +110,3 @@ CategoryList.getLayout = function getLayout(page) {
 }
 
 export default CategoryList;
-
-
-
-// const Categories = () => {
-//   return (
-//     <div className="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 sm:py-12 lg:px-8">
-//       <div className="text-center py-4">
-//         <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
-//           Featured Categories
-//         </h2>
-
-//         <p className="max-w-md mx-auto mt-4 text-gray-500">
-//           Choose Your Desired Product from Featured Categories!
-//         </p>
-//       </div>
-//       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-//         {categories.map((category, index) => (
-//           <CategoryCard
-//             key={index}
-//             title={category.title}
-//             icon={category.icon}
-//           />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-

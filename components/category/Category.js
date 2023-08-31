@@ -1,5 +1,5 @@
 import React from "react";
-import {categoryIcons} from "../../utils/Category"
+import {categoryIcons} from "../../src/utils/Category"
 
 const CategoryCard = ({ icon, title }) => (
   <div className=" flex bg-white flex-col items-center justify-center p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300">
