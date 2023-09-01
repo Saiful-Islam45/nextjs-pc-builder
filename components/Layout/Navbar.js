@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import Logo from "./Logo"
 import Link from "next/link";
+import { BiChevronDown } from "react-icons/bi"
+import  { categoryUrl } from "../../src/utils/Category"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,7 +41,7 @@ const Navbar = () => {
           className={`${isOpen ? "hidden" : ""} w-full md:block md:w-auto`}
           id="navbar-default"
         >
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="font-medium font- flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
               <Link
                 href="/"
@@ -72,28 +74,14 @@ const Navbar = () => {
                 <button className="dropbtn block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 dark:text-white md:dark:hover:text-purple-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                   Categories
                 </button>
-                <svg
-                    className="-mr-1 h-5 w-5 text-gray-400"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                <BiChevronDown/>
                 </div>
                 <div className="dropdown-content">
-                  <Link href="#">CPU / Processor</Link>
-                  <Link href="#">Motherboard</Link>
-                  <Link href="#">RAM</Link>
-                  <Link href="#">Power Supply Unit</Link>
-                  <Link href="#">Storage Device</Link>
-                  <Link href="#">Monitor</Link>
-                  <Link href="#">Others</Link>
-
+                  {
+                    Object.entries(categoryUrl).map(([category, url]) => (
+                      <Link key={url} href={`/category/${url}`}>{category}</Link>
+                    ))
+                  }
                 </div>
               </div>
             </li>

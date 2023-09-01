@@ -559,23 +559,6 @@ export const data = [
       "link": "/motherboard"
   }
 ]
-
-export const categories = data.reduce((acc, curr) => {
-    const existingCategory = acc.find(category => category.name === curr.category);
-
-    if (existingCategory) {
-      existingCategory.products.push(curr);
-    } else {
-      acc.push({
-        id: acc.length + 1,
-        name: curr.category,
-        products: [curr],
-      });
-    }
-  
-    return acc;
-  }, []);
-  
   
   
   

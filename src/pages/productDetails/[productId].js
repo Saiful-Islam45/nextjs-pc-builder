@@ -1,13 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import { data } from "@/data/data";
-import { useRouter } from "next/router";
 import Rating from "../../ui/Rating";
-import RootLayout from '../../../components/Layout/index';
+import RootLayout from "../../../components/Layout/index";
 
-const ProductDetails = () => {
-  const router = useRouter();
-  const product = data.find(p => p.id == router.query.productId);
+const ProductDetails = ({products}) => {
+  const product = products[0]
   return (
     <section className="text-gray-700 body-font overflow-hidden bg-white">
       <div className="container px-5 py-24 mx-auto">
@@ -27,18 +24,19 @@ const ProductDetails = () => {
             <div className="flex mb-4">
               <span className="flex items-center">
                 <Rating rating={product.rating} isNumberShow={false} />
-                <span className="text-gray-600 ml-3 mt-[-16px]">{product.reviews.length || 0} Reviews</span>
+                <span className="text-gray-600 ml-3 mt-[-16px]">
+                  {product?.reviews?.length || 0} Reviews
+                </span>
               </span>
-
             </div>
-            <p className="leading-relaxed">
-              {product.description}
-            </p>
+            <p className="leading-relaxed">{product.description}</p>
             <div className="pl-2 mt-3">
               <h3 className=" text-xl">Key Features:</h3>
               <ul className="pl-2">
-                {Object.entries(product.keyFeatures).map(([key, value]) => (
-                  <li key={'key' + key}>{key}: {value}</li>
+                {Object.entries(product.keyFeatures || {}).map(([key, value]) => (
+                  <li key={"key" + key}>
+                    {key}: {value}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -65,18 +63,19 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-      {
-        product.reviews.map(review => (
-          <div key={'review' + review.comment} className=" px-4 md:px-8 ml-0 md:ml-8 w-[95vw] md:w-[50vw] border-b border-gray-200 mb-1">
-            <p className="font-semibold">{review.user}</p>
-            <div className="pl-2 mb-2 flex items-center gap2">
-              <span className="">Rating: </span>
-              <Rating rating={review.rating} isNumberShow={false}/>
-            </div>
-            <p className="pl-2">{review.comment}</p>
+      {product?.reviews?.map(review => (
+        <div
+          key={"review" + review.comment}
+          className=" px-4 md:px-8 ml-0 md:ml-8 w-[95vw] md:w-[50vw] border-b border-gray-200 mb-1"
+        >
+          <p className="font-semibold">{review.user}</p>
+          <div className="pl-2 mb-2 flex items-center gap2">
+            <span className="">Rating: </span>
+            <Rating rating={review.rating} isNumberShow={false} />
           </div>
-        ))
-      }
+          <p className="pl-2">{review.comment}</p>
+        </div>
+      ))}
     </section>
   );
 };
@@ -85,5 +84,29 @@ ProductDetails.getLayout = function getLayout(page) {
   return <RootLayout childern={page} title="Product Details" />;
 };
 
+export const getStaticPaths = async () => {
+  const result = await fetch("http://localhost:5000/products");
+  const products = await result.json();
+  const paths = products.map(p => ({
+    params: {
+      productId: p._id
+    }
+  }));
+  return {
+    paths,
+    fallback: false
+  };
+};
+
+export const getStaticProps = async context => {
+  const productId = context.params.productId;
+  const result = await fetch(`http://localhost:5000/products/${productId}`);
+  const products = await result.json();
+  return {
+    props: {
+      products
+    }
+  };
+};
 
 export default ProductDetails;

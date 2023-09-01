@@ -6,7 +6,7 @@ const RootLayout = ({ childern, title }) => {
   return (
     <>
       <Head>
-        <title>{title ? `${title}-PC builder` : "PC builder"}</title>
+        <title>{title ? `${title} | PC builder` : "PC builder"}</title>
       </Head>
       <Navbar/>
 
