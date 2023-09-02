@@ -1,7 +1,7 @@
 import React from "react";
-import RootLayout from "../../../components/Layout";
+import RootLayout from "../../components/Layout";
 import { categoryUrl, findKeyByValue } from "@/utils/Category";
-import Products from "../../../components/FeatureProducts/Products";
+import Products from "../../components/FeatureProducts/Products";
 
 const CatgoryWiseProducts = ({ products }) => <Products products={products} />;
 

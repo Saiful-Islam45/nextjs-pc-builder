@@ -2,10 +2,12 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { RiArrowRightSLine } from "react-icons/ri";
-import RootLayout from "../../components/Layout";
+import RootLayout from "../components/Layout";
 import { categoryIcons, categoryWiseProducts } from "../utils/Category";
 import { FaTimes } from "react-icons/fa";
-import ProductCard from "../../components/FeatureProducts/ProductCard";
+import ProductCard from "../components/FeatureProducts/ProductCard";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const ProductModal = ({ isOpen, onClose, products, onSelectProduct }) => {
   return (
@@ -43,30 +45,27 @@ const ProductModal = ({ isOpen, onClose, products, onSelectProduct }) => {
 const CategoryList = ({ categoryData }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState({});
+  const { pcBuilder } = useSelector(state => state);
 
   const handleChooseClick = category => {
     setSelectedCategory(category);
     setIsModalOpen(true);
   };
 
+  const isBuildComplete = () => {
+    const existCategories = Object.values(pcBuilder).filter(c => c);
+    return existCategories.length === 7;
+  };
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
 
-  const handleSelectProduct = product => {
-    setSelectedProduct({
-      ...selectedProduct,
-      [product.category]: product
-    });
+  const handleSelectProduct = () => {
     setIsModalOpen(false);
   };
 
-  const handleRemoveProduct = product => {
-    setSelectedProduct({
-      ...selectedProduct,
-      [product.category]: null
-    });
+  const handleRemoveProduct = () => {
     setIsModalOpen(false);
   };
 
@@ -79,7 +78,7 @@ const CategoryList = ({ categoryData }) => {
               <div className=" text-5xl">{categoryIcons[category.name]}</div>
               <div>{category.name}</div>
               <button onClick={() => handleChooseClick(category)}>
-                {selectedProduct[category.name] ? (
+                {pcBuilder[category.name] ? (
                   " "
                 ) : (
                   <span className=" flex items-center justify-center">
@@ -90,9 +89,9 @@ const CategoryList = ({ categoryData }) => {
               </button>
             </div>
             <div className="w-full md:w-[75vw] m-auto">
-              {selectedProduct[category.name] && (
+              {pcBuilder[category.name] && (
                 <ProductCard
-                  product={selectedProduct[category.name]}
+                  product={pcBuilder[category.name]}
                   onSelectProduct={handleRemoveProduct}
                   shouldRemove={true}
                 />
@@ -102,9 +101,15 @@ const CategoryList = ({ categoryData }) => {
         ))}
       </div>
       <div className="flex w-full md:w-[90vw] items-center justify-end p-2  mt-2 mb-4 ">
-        <button 
-        // disabled={Object.values(selectedProduct).length !== 7}
-        className=" bg-purple-600 font-bold text-center p-2 rounded-md text-white">
+        <button
+          onClick={() =>toast.success("Congratulations! You have successfully done your PC Build. ")}
+          disabled={isBuildComplete() ? false : true}
+          className={` ${
+            isBuildComplete()
+              ? "bg-purple-600 text-white"
+              : "bg-purple-300 text-gray-100"
+          } font-bold text-center p-2 rounded-md `}
+        >
           Complete Build
         </button>
       </div>

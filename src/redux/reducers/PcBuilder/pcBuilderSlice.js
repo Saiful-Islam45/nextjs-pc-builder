@@ -5,16 +5,10 @@ const PcBuilderSlicer = createSlice({
   initialState: {},
   reducers: {
     addToBuilder: (state, action) => {
-      state = {
-        ...state,
-        [action.payload.category]: action.payload
-      };
+      state[action.payload.category]= action.payload
     },
     removeFromBuilder: (state, action) => {
-      state = {
-        ...state,
-        [action.payload.category]: null
-      };
+      state[action.payload.category]= null
     }
   }
 });
