@@ -6,9 +6,11 @@ import RootLayout from "../components/Layout";
 import { categoryIcons, categoryWiseProducts } from "../utils/Category";
 import { FaTimes } from "react-icons/fa";
 import ProductCard from "../components/FeatureProducts/ProductCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-const serverUrl= process.env.SERVER_BASE_URL
+import { clearBuilder } from "@/redux/reducers/PcBuilder/pcBuilderSlice";
+import { useRouter } from "next/router";
+const serverUrl = process.env.SERVER_BASE_URL;
 
 const ProductModal = ({ isOpen, onClose, products, onSelectProduct }) => {
   return (
@@ -47,6 +49,8 @@ const CategoryList = ({ categoryData }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { pcBuilder } = useSelector(state => state);
+  const dispatch = useDispatch();
+  const router= useRouter()
 
   const handleChooseClick = category => {
     setSelectedCategory(category);
@@ -103,7 +107,13 @@ const CategoryList = ({ categoryData }) => {
       </div>
       <div className="flex w-full md:w-[90vw] items-center justify-end p-2  mt-2 mb-4 ">
         <button
-          onClick={() =>toast.success("Congratulations! You have successfully done your PC Build. ")}
+          onClick={() => {
+            toast.success(
+              "Congratulations! You have successfully done your PC Build. "
+            );
+            dispatch(clearBuilder());
+            router.push('/')
+          }}
           disabled={isBuildComplete() ? false : true}
           className={` ${
             isBuildComplete()
