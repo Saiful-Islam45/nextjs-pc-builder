@@ -3,8 +3,7 @@ import RootLayout from "../components/Layout";
 import HeroSection from "../components/Hero/HeroSection";
 import Products from "../components/FeatureProducts/Products";
 import Categories from "../components/category/Category";
-// import { data } from "@/data/data";
-
+const serverUrl= process.env.SERVER_BASE_URL
 const Home = ({ products }) => {
   return (
     <>
@@ -20,7 +19,7 @@ Home.getLayout = function getLayout(page) {
 };
 
 export const getStaticProps = async () => {
-  const result = await fetch("http://localhost:5000/products");
+  const result = await fetch(serverUrl);
   const products = await result.json();
   return {
     props: { products }

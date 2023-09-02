@@ -5,6 +5,7 @@ import RootLayout from "../../components/Layout/index";
 import { addToBuilder } from "@/redux/reducers/PcBuilder/pcBuilderSlice";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
+const serverUrl= process.env.SERVER_BASE_URL
 
 const ProductDetails = ({ products }) => {
   const dispatch = useDispatch();
@@ -86,7 +87,7 @@ ProductDetails.getLayout = function getLayout(page) {
 };
 
 export const getStaticPaths = async () => {
-  const result = await fetch("http://localhost:5000/products");
+  const result = await fetch(serverUrl);
   const products = await result.json();
   const paths = products.map(p => ({
     params: {
@@ -101,7 +102,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async context => {
   const productId = context.params.productId;
-  const result = await fetch(`http://localhost:5000/products/${productId}`);
+  const result = await fetch(`${serverUrl}/${productId}`);
   const products = await result.json();
   return {
     props: {

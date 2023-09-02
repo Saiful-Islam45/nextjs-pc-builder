@@ -1,7 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import Link from "next/link";
 import Rating from "../../ui/Rating";
+import Image from "next/image";
 
 const Products = ({ products }) => {
   return (
@@ -24,7 +24,9 @@ const Products = ({ products }) => {
                 className="shadow-md flex flex-col items-center justify-center"
               >
                 <div className="bg-lightGrey1 overflow-hidden group rounded-2xl p-1 relative  w-[250px] cursor-pointer">
-                  <img
+                  <Image
+                    height={50}
+                    width={100}
                     src={image}
                     alt={name}
                     className="h-[225px] w-full object-cover rounded transition duration-500 group-hover:scale-105 "

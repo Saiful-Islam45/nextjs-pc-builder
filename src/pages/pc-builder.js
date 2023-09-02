@@ -8,6 +8,7 @@ import { FaTimes } from "react-icons/fa";
 import ProductCard from "../components/FeatureProducts/ProductCard";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+const serverUrl= process.env.SERVER_BASE_URL
 
 const ProductModal = ({ isOpen, onClose, products, onSelectProduct }) => {
   return (
@@ -132,7 +133,7 @@ CategoryList.getLayout = function getLayout(page) {
 export default CategoryList;
 
 export const getServerSideProps = async () => {
-  const result = await fetch("http://localhost:5000/products");
+  const result = await fetch(serverUrl);
   const products = await result.json();
   return {
     props: { categoryData: categoryWiseProducts(products) }
