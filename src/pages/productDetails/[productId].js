@@ -1,21 +1,24 @@
-/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import Rating from "../../ui/Rating";
 import RootLayout from "../../components/Layout/index";
 import { addToBuilder } from "@/redux/reducers/PcBuilder/pcBuilderSlice";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-const serverUrl= process.env.SERVER_BASE_URL
+import Image from "next/image";
+const serverUrl = process.env.SERVER_BASE_URL;
 
 const ProductDetails = ({ products }) => {
   const dispatch = useDispatch();
-  const router = useRouter()
+  const router = useRouter();
   const product = products[0];
   return (
     <section className="text-gray-700 body-font overflow-hidden bg-white">
       <div className="container px-5 py-24 mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
-          <img
+          <Image
+            width={100}
+            height={100}
+            responsive={true}
             alt="ecommerce"
             className="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200"
             src={product.image}
@@ -54,8 +57,8 @@ const ProductDetails = ({ products }) => {
               </span>
               <button
                 onClick={() => {
-                  dispatch(addToBuilder(product))
-                  router.push('/pc-builder')
+                  dispatch(addToBuilder(product));
+                  router.push("/pc-builder");
                 }}
                 className="flex ml-auto text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded"
               >

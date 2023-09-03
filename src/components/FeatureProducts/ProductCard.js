@@ -1,13 +1,13 @@
-/* eslint-disable @next/next/no-img-element */
 import Rating from "@/ui/Rating";
 import { useDispatch } from "react-redux";
 import { addToBuilder, removeFromBuilder } from "@/redux/reducers/PcBuilder/pcBuilderSlice";
+import Image from "next/image";
 
 const ProductCard = ({ product, onSelectProduct, shouldRemove }) => {
   const dispatch= useDispatch()
   return (
     <div className="flex flex-col p-2 sm:flex-row md:flex-row justify-between my-2 hover:scale-y-105 duration-500 shadow-md">
-      <img src={product.image} height={150} width={150} alt={product.name} />
+      <Image src={product.image} height={150} width={150} loading="lazy" alt={product.name} />
       <div className="pl-2 mt-3">
         <h3 className="text-xl font-semibold">{product.name}</h3>
         <Rating rating={product.rating} />

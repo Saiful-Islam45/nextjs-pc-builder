@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import Logo from "./Logo";
 import Link from "next/link";
@@ -7,6 +6,7 @@ import { categoryUrl } from "../../utils/Category";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 const Navbar = () => {
+  const callbackUrl = process.env.NEXTAUTH_URL;
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
   return (
@@ -78,9 +78,14 @@ const Navbar = () => {
               </span>
             </Link>
             {session?.user ? (
-              <li className="cursor-pointer block py-2 md:py-0 pl-3 pr-4" onClick={() => signOut({
-                callbackUrl: "http://localhost:3000"
-              })}>
+              <li
+                className="cursor-pointer block py-2 md:py-0 pl-3 pr-4"
+                onClick={() =>
+                  signOut({
+                    callbackUrl
+                  })
+                }
+              >
                 Logout
               </li>
             ) : (
@@ -88,7 +93,7 @@ const Navbar = () => {
                 className="cursor-pointer block py-2 md:py-0 pl-3 pr-4"
                 onClick={() =>
                   signIn("github", {
-                    callbackUrl: "http://localhost:3000"
+                    callbackUrl
                   })
                 }
               >

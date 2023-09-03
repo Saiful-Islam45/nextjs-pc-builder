@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import RootLayout from "../components/Layout";
 import HeroSection from "../components/Hero/HeroSection";
 import Products from "../components/FeatureProducts/Products";
